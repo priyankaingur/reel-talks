@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ProgressBar from './ProgressBar'; // Import the ProgressBar component
 
 interface Genre {
     name: string;
@@ -40,13 +41,14 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
+            <ProgressBar stages={5} currentStage={3} /> {/* Add the progress bar */}
             <h2 className="text-2xl font-bold mb-4 text-center">Select your top 5 genres for movies and TV</h2>
             <div className="mb-4">
                 <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="🔍 Search"
+                    placeholder="🔍 Search genres..."
                     className="w-[544px] h-[56px] p-2 rounded-md bg-gray-800 text-white focus:outline-none"
                 />
             </div>
@@ -54,7 +56,7 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                 {genres.map(({ name, emoji }) => (
                     <button
                         key={name}
-                        className={`flex items-center justify-between p-2 border rounded-md w-64 h-12 ${selectedGenres.includes(name) ? 'bg-orange-500' : 'bg-white'} hover:bg-gray-200 focus:outline-none`}
+                        className={`flex items-center justify-between p-2 border rounded-md w-[256px] h-[48px] ${selectedGenres.includes(name) ? 'bg-orange-500' : 'bg-white'} hover:bg-gray-200 focus:outline-none`}
                         onClick={() => toggleGenre(name)}
                         style={{ color: '#222222', fontFamily: 'Avenir Next', fontSize: '14px', fontWeight: '600' }}
                     >
@@ -75,13 +77,13 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
             <div className="flex justify-center mt-4">
                 <button
                     className="p-2 border border-white rounded text-white mr-4 bg-transparent hover:bg-gray-800"
-                    onClick={() => console.log('Back button clicked')} // Replace with appropriate functionality
+                    onClick={() => console.log('Back button clicked')}
                     style={{ width: '256px', height: '48px' }}
                 >
                     Back
                 </button>
                 <button
-                    className={`p-2 rounded text-white ${selectedGenres.length > 0 ? 'bg-orange-500' : 'bg-gray-600'}`}
+                    className={`p-2 rounded ${selectedGenres.length > 0 ? 'text-black bg-orange-500' : 'text-white bg-gray-600'}`}
                     onClick={() => onNext(selectedGenres)}
                     disabled={selectedGenres.length === 0}
                     style={{ width: '256px', height: '48px' }}

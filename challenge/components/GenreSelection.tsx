@@ -30,6 +30,7 @@ const genres: Genre[] = [
 
 const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> = ({ onNext }) => {
     const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+    const [searchQuery, setSearchQuery] = useState<string>('');
 
     const toggleGenre = (genre: string) => {
         setSelectedGenres(prev =>
@@ -39,16 +40,23 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
 
     return (
         <div className="p-6 bg-gray-900 text-white">
-            <h2 className="text-2xl font-bold mb-4">Select your top 5 genres for movies and TV</h2>
-            <div className="flex flex-row">
+            <h2 className="text-2xl font-bold mb-4 text-center">Select your top 5 genres for movies and TV</h2>
+            <div className="flex flex-row mb-4">
+                <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="🔍Search"
+                    className="w-56 h-544 p-2 rounded-l-md bg-gray-800 text-white focus:outline-none"
+                />
             </div>
             <div className="grid grid-cols-5 gap-4">
-                {genres.map(({ name, emoji }) => (
+                {genres.map(({name, emoji}) => (
                     <button
                         key={name}
                         className={`flex items-center justify-between p-2 border rounded-md w-40 h-12 bg-${selectedGenres.includes(name) ? 'orange-500' : 'white'} hover:bg-gray-200 focus:outline-none`}
                         onClick={() => toggleGenre(name)}
-                        style={{ color: '#222222', fontFamily: 'Avenir Next' }}
+                        style={{ color: '#222222', fontFamily: 'Avenir Next', fontSize: '14px', fontWeight: '600' }}
                     >
                         <div className="flex items-center">
                             <span className="text-2xl mr-2">{emoji}</span>

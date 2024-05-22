@@ -39,15 +39,15 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
     };
 
     return (
-        <div className="p-6 bg-gray-900 text-white">
+        <div className="p-6 bg-black text-white">
             <h2 className="text-2xl font-bold mb-4 text-center">Select your top 5 genres for movies and TV</h2>
             <div className="flex flex-row mb-4">
                 <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="🔍Search"
-                    className="w-56 h-544 p-2 rounded-l-md bg-gray-800 text-white focus:outline-none"
+                    placeholder="🔍 Search genres..."
+                    className="w-544 h-56 p-2 rounded-l-md bg-gray-800 text-white focus:outline-none"
                 />
             </div>
             <div className="grid grid-cols-5 gap-4">
@@ -72,12 +72,23 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                     </button>
                 ))}
             </div>
-            <button
-                className="mt-4 p-2 bg-orange-500 rounded text-white"
-                onClick={() => onNext(selectedGenres)}
-            >
-                Next
-            </button>
+            <div className="flex justify-center mt-4">
+                <button
+                    className="p-2 border border-white rounded text-white mr-4"
+                    onClick={() => console.log('Back button clicked')} // Replace with appropriate functionality
+                    style={{ width: '256px', height: '48px' }}
+                >
+                    Back
+                </button>
+                <button
+                    className={`p-2 rounded text-white ${selectedGenres.length > 0 ? 'bg-orange-500' : 'bg-gray-600'}`}
+                    onClick={() => onNext(selectedGenres)}
+                    disabled={selectedGenres.length === 0}
+                    style={{ width: '256px', height: '48px' }}
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 };

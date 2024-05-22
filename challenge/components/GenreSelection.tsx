@@ -6,10 +6,26 @@ interface Genre {
 }
 
 const genres: Genre[] = [
-    { name: "Action", emoji: "🔥" },
+    { name: "Action", emoji: "🔫" },
+    { name: "Adventure", emoji: "🪂" },
+    { name: "Adult", emoji: "🔞" },
+    { name: "Animation ", emoji: "🖍" },
+    { name: "Biography ", emoji: "📚" },
+    { name: "Bollywood ", emoji: "🇮🇳" },
     { name: "Comedy", emoji: "😂" },
-    { name: "Drama", emoji: "🎭" },
-    // Add other genres as needed
+    { name: "Crime", emoji: "🕵️‍" },
+    { name: "Disaster", emoji: "☄️" },
+    { name: "Documentary", emoji: "🎥" },
+    { name: "Drama ", emoji: "🎭" },
+    { name: "Family", emoji: "👪" },
+    { name: "Fantasy", emoji: "🦄" },
+    { name: "Film-Noir ", emoji: "🎞" },
+    { name: "History", emoji: "📜" },
+    { name: "Horror ", emoji: "🧟" },
+    { name: "Game-Show  ", emoji: "🎲" },
+    { name: "Independent", emoji: "📢" },
+    { name: "International", emoji: "🌎" },
+    { name: "Music ", emoji: "🎧" }
 ];
 
 const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> = ({ onNext }) => {
@@ -23,12 +39,14 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
 
     return (
         <div className="p-6 bg-gray-900 text-white">
-            <h2 className="text-2xl font-bold mb-4">Select Your Favorite Genres</h2>
+            <h2 className="text-2xl font-bold mb-4">Select your top 5 genres for movies and TV</h2>
+            <div className="flex flex-row">
+            </div>
             <div className="grid grid-cols-5 gap-4">
                 {genres.map(({ name, emoji }) => (
                     <button
                         key={name}
-                        className={`flex items-center justify-between p-2 border rounded w-40 h-12 bg-${selectedGenres.includes(name) ? 'orange-500' : 'white'} hover:bg-gray-200 focus:outline-none`}
+                        className={`flex items-center justify-between p-2 border rounded-md w-40 h-12 bg-${selectedGenres.includes(name) ? 'orange-500' : 'white'} hover:bg-gray-200 focus:outline-none`}
                         onClick={() => toggleGenre(name)}
                         style={{ color: '#222222', fontFamily: 'Avenir Next' }}
                     >

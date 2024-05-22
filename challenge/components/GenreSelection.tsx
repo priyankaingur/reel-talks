@@ -58,7 +58,7 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                         key={name}
                         className={`flex items-center justify-between p-2 border rounded-md w-[256px] h-[48px] ${selectedGenres.includes(name) ? 'bg-orange-500' : 'bg-white'} hover:bg-gray-200 focus:outline-none`}
                         onClick={() => toggleGenre(name)}
-                        style={{ color: '#222222', fontFamily: 'Avenir Next', fontSize: '14px', fontWeight: '600' }}
+                        style={{ color: selectedGenres.includes(name) ? '#222222' : '#222222', fontFamily: 'Avenir Next', fontSize: '14px', fontWeight: '600' }}
                     >
                         <div className="flex items-center">
                             <span className="text-2xl mr-2">{emoji}</span>
@@ -77,7 +77,7 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
             <div className="flex justify-center mt-4">
                 <button
                     className="p-2 border border-white rounded text-white mr-4 bg-transparent hover:bg-gray-800"
-                    onClick={() => console.log('Back button clicked')}
+                    onClick={() => console.log('Back button clicked')} // Replace with appropriate functionality
                     style={{ width: '256px', height: '48px' }}
                 >
                     Back

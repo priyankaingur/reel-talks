@@ -5,3 +5,12 @@
 body {
     @apply bg-custom-bg;
 }
+
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Avenir Next';
+}
+

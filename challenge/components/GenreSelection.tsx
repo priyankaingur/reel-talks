@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import showMoreIcon from '../images/showmore.png';
 import searchIcon from '../images/search.png';
+import {gray} from "next/dist/lib/picocolors";
 
 interface Genre {
     name: string;
@@ -77,19 +78,19 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search"
-                    className="w-[544px] h-[56px] p-2 pl-10 rounded-md bg-gray-800 text-white focus:outline-none"
+                    className="w-[544px] h-[56px] p-2 pl-10 rounded-md text-white bg-gray-800 focus:outline-none"
+                    style={{opacity: 'var(--1st-surface-opacity)'}}
                 />
+
             </div>
             <div className="grid grid-cols-5 gap-4">
                 {visibleGenres.map(({name, emoji}) => (
                     <button
                         key={name}
-                        className={`flex items-center justify-between p-2 border rounded-md w-[256px] h-[48px] hover:bg-gray-200 focus:outline-none`}
+                        className={`flex items-center justify-between p-2 text-black border rounded-md w-[256px] h-[48px] hover:bg-gray-200 focus:outline-none`}
                         onClick={() => toggleGenre(name)}
                         style={{
                             backgroundColor: selectedGenres.includes(name) ? 'var(--primary-color)' : 'white',
-                            color: '#222222',
-                            fontFamily: 'Avenir Next',
                             fontSize: '14px',
                             fontWeight: '600'
                         }}
@@ -102,9 +103,12 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                             type="checkbox"
                             checked={selectedGenres.includes(name)}
                             onChange={() => toggleGenre(name)}
-                            className="form-checkbox h-4 w-4 rounded"
+                            className="hidden"
                             aria-labelledby={`checkbox-${name}`}
                         />
+                        <span
+                            className={`custom-checkbox ${selectedGenres.includes(name) ? 'checked' : ''}`}></span>
+
                     </button>
                 ))}
             </div>
@@ -125,13 +129,15 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                     Back
                 </button>
                 <button
-                    className={`p-2 rounded ${selectedGenres.length > 0 ? 'text-black' : 'text-white'}`}
+                    className={`p-2 rounded ${selectedGenres.length >= 3 ? 'text-black' : 'text-white'}`}
                     onClick={() => onNext(selectedGenres)}
-                    disabled={selectedGenres.length === 0}
+                    disabled={selectedGenres.length < 3}
                     style={{
                         width: '256px',
                         height: '48px',
-                        background: selectedGenres.length > 0 ? 'var(--primary-color)' : 'var(--gray)'
+                        background: selectedGenres.length >= 3 ? 'var(--primary-color)' : 'var(--gray)',
+                        opacity: selectedGenres.length < 3 ? '38%' : '100%'
+
                     }}
                 >
                     Next

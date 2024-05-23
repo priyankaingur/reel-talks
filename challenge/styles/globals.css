@@ -14,8 +14,43 @@ body {
     font-family: 'Avenir Next';
 }
 
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+}
+
+.custom-checkbox.checked {
+    background-color: white;
+    border: 1px solid black;
+}
+
+.custom-checkbox.checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0px;
+    width: 8px;
+    height: 14px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+input::placeholder {
+    color: white;
+}
+
 :root {
     --primary-color: #FFA724;
     --gray: #6D6D6D;
     --high-emphasis: #D9D9D9;
+
+    --1st-surface-color: #FFFFFF;
+    --1st-surface-opacity: 15%;
+    --2nd-surface-color: #222222;
+    --2nd-surface-opacity: 100%;
 }

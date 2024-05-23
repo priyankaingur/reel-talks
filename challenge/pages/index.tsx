@@ -5,7 +5,8 @@ import { MovieSelection } from '../components/MovieSelection'; // Change import 
 const Challenge = () => {
     const [step, setStep] = useState(1);
     const [genres, setGenres] = useState<string[]>([]);
-    const [topMovies, setTopMovies] = useState<string[]>([]); // Change the type to string[] if it's not already
+    const [topMovies, setTopMovies] = useState<string[]>([]); // Change the
+    // type to string[] if it's not already
 
     const handleGenreNext = (selectedGenres: string[]) => {
         setGenres(selectedGenres);

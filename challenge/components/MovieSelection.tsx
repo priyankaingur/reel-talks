@@ -1,24 +1,37 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import SearchBar from "./SearchBar";
 import SearchTitle from "./SearchTitle";
 
 interface Movie {
     name: string;
-    image: string;
+    image: StaticImageData
+    ;
 }
 
+// Importing images
+import shawshankImage from '../images/shawshank.png';
+import inceptionImage from '../images/inception.png';
+import intouchablesImage from '../images/intouchables.png';
+import wallEImage from '../images/walle.png';
+import flippedImage from '../images/flipped.png';
+import darkKnightImage from '../images/darkknight.png';
+import {StaticImageData} from "next/image";
+
 const movies: Movie[] = [
-    { name: "The Shawshank Redemption (1994)", image: require("../images/shawshank.png").default },
-    { name: "Inception (2010)", image: require("../images/inception.png").default },
+    { name: "The Shawshank Redemption (1994)", image: shawshankImage },
+    { name: "Inception (2010)", image: inceptionImage },
+    { name: "Intouchables (2011)", image: intouchablesImage },
+    { name: "WALL·E (2008)", image: wallEImage },
+    { name: "Flipped (2010)", image: flippedImage },
+    { name: "The Dark Knight (2008)", image: darkKnightImage }
 ];
 
 export const MovieSelection: React.FC<{ onNext: (selectedMovies: string[]) => void }> = ({ onNext }) => {
     const [selectedMovies, setSelectedMovies] = useState<string[]>([]);
 
     return (
-        <div
-            className="flex flex-col items-center justify-center h-screen bg-black text-white">
+        <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
             <ProgressBar stages={5} currentStage={4}/>
             <SearchTitle title="Select your top 5 movies"/>
 
@@ -40,24 +53,17 @@ export const MovieSelection: React.FC<{ onNext: (selectedMovies: string[]) => vo
                 Movies you might like
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-                {movies.map((movie) => (
+            <div className="grid grid-cols-6 gap-4">
+                {movies.map(movie => (
                     <div key={movie.name} className="text-center">
-                        <img src={movie.image} alt={movie.name}
-                             className="w-32 h-auto mx-auto"/>
-                        <div className="text-white">{movie.name}</div>
+                        <img src={movie.image.src} alt={movie.name} className="w-96 h-142.45 mx-auto" />
+                        <div className="text-white">{movie.name}</div> {/* Display movie name */}
                     </div>
                 ))}
             </div>
             <button
                 className={`p-2 rounded ${selectedMovies.length >= 3 ? 'text-black' : 'text-white'}`}
                 onClick={() => onNext(selectedMovies)}
-                // disabled={selectedGenres.length < 3}
-                // style={{
-                //     width: '256px',
-                //     height: '48px',
-                //     background: selectedGenres.length >= 3 ? 'var(--primary-color)' : 'var(--gray)',
-                //     opacity: selectedGenres.length < 3 ? '38%' : '100%'
             >
                 Next
             </button>

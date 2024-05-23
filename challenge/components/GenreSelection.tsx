@@ -62,43 +62,57 @@ export const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => vo
     const visibleGenres = showMore ? genres : genres.slice(0, 20);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
-            <ProgressBar stages={5} currentStage={3}/>
-            <SearchTitle title="Select your top 5 genres for movies and TV"/>
-            <SearchBar/>
-            <div className="grid grid-cols-5 gap-4">
-                {visibleGenres.map(({name, emoji}) => (
-                    <button
-                        key={name}
-                        className={`flex items-center justify-between p-2 text-black border rounded-md w-[256px] h-[48px] hover:bg-gray-200 focus:outline-none`}
-                        onClick={() => toggleGenre(name)}
-                        style={{
-                            backgroundColor: selectedGenres.includes(name) ? 'var(--primary-color)' : 'white',
-                            fontSize: '14px',
-                            fontWeight: '600'
-                        }}
-                    >
-                        <div className="flex items-center">
-                            <span className="text-2xl mr-2">{emoji}</span>
-                            <span className="text-base">{name}</span>
-                        </div>
-                        <input
-                            type="checkbox"
-                            checked={selectedGenres.includes(name)}
-                            onChange={() => toggleGenre(name)}
-                            className="hidden"
-                            aria-labelledby={`checkbox-${name}`}
-                        />
-                        <span
-                            className={`custom-checkbox ${selectedGenres.includes(name) ? 'checked' : ''}`}></span>
+        <div
+            className="flex flex-col items-center justify-center h-screen bg-black text-white">
+            <div
+                className="w-full max-w-3xl flex flex-col items-center justify-center">
+                <ProgressBar stages={5} currentStage={3}/>
+                <SearchTitle
+                    title="Select your top 5 genres for movies and TV"/>
+                <div
+                    className="w-full flex justify-center mb-8"> {/* Center the search bar horizontally and add margin bottom */}
+                    <SearchBar/>
+                </div>
+            </div>
 
-                    </button>
+
+            <div className="grid grid-cols-5 gap-10">
+                {visibleGenres.map(({name, emoji}) => (
+                    <div>
+                        <button
+                            key={name}
+                            className={`flex items-center justify-between p-2 text-black border rounded-md w-[225px] h-[55px] hover:bg-gray-200 focus:outline-none`}
+                            onClick={() => toggleGenre(name)}
+                            style={{
+                                backgroundColor: selectedGenres.includes(name) ? 'var(--primary-color)' : 'white',
+                                fontSize: '28px',
+                                fontWeight: '600'
+                            }}
+                        >
+                            <div className="flex items-center">
+                                <span className="text-2xl mr-2">{emoji}</span>
+                                <span className="text-base">{name}</span>
+                            </div>
+                            <input
+                                type="checkbox"
+                                checked={selectedGenres.includes(name)}
+                                onChange={() => toggleGenre(name)}
+                                className="hidden"
+                                aria-labelledby={`checkbox-${name}`}
+                            />
+                            <span
+                                className={`custom-checkbox ${selectedGenres.includes(name) ? 'checked' : ''}`}></span>
+
+                        </button>
+                    </div>
                 ))}
             </div>
             {!showMore && genres.length > 20 && (
-                <button className="mt-2 flex items-center text-white" onClick={toggleShowMore}>
+                <button className="mt-2 flex items-center text-white"
+                        onClick={toggleShowMore}>
                     Show More
-                    <img src={showMoreIcon.src} alt="Show More Icon" className="w-4 h-4 mr-2"/>
+                    <img src={showMoreIcon.src} alt="Show More Icon"
+                         className="w-4 h-4 mr-2"/>
                 </button>
             )}
             <div className="flex justify-center mt-4">

@@ -7,7 +7,7 @@ const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState<string>('');
 
     return (
-        <div className="mb-4 relative">
+        <div className="mb-4 relative justify-center">
             <img src={searchIcon.src} alt="SearchBar Icon"
                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"/>
             <input

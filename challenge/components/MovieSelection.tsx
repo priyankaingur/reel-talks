@@ -32,9 +32,13 @@ export const MovieSelection: React.FC<{ onNext: (selectedMovies: string[]) => vo
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
-            <ProgressBar stages={5} currentStage={4}/>
-            <SearchTitle title="Select your top 5 movies"/>
+            <div className="md:container md:mx-auto">
 
+                <ProgressBar stages={5} currentStage={4}/>
+            <div className="mb-4">
+
+            <SearchTitle title="Select your top 5 movies"/>
+            </div></div>
             <h2 className="max-w-[600px] text-2xl mb-4 text-center"
                 style={{
                     color: 'var(--high-emphasis)',
@@ -57,7 +61,7 @@ export const MovieSelection: React.FC<{ onNext: (selectedMovies: string[]) => vo
                 {movies.map(movie => (
                     <div key={movie.name} className="text-center">
                         <img src={movie.image.src} alt={movie.name} className="w-96 h-142.45 mx-auto" />
-                        <div className="text-white">{movie.name}</div> {/* Display movie name */}
+                        <div className="text-white w-96 h-48 text-[12]" style={{color:'var(--gray)'}}>{movie.name}</div>
                     </div>
                 ))}
             </div>

@@ -45,7 +45,7 @@ const genres: Genre[] = [
     { name: "Western", emoji: "🤠" },
 ];
 
-const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> = ({ onNext }) => {
+export const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> = ({ onNext }) => {
     const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
     const [showMore, setShowMore] = useState<boolean>(false);
 
@@ -62,8 +62,7 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
     const visibleGenres = showMore ? genres : genres.slice(0, 20);
 
     return (
-        <div
-            className="flex flex-col items-center justify-center h-screen bg-black text-white">
+        <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
             <ProgressBar stages={5} currentStage={3}/>
             <SearchTitle title="Select your top 5 genres for movies and TV"/>
             <SearchBar/>
@@ -97,11 +96,9 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                 ))}
             </div>
             {!showMore && genres.length > 20 && (
-                <button className="mt-2 flex items-center text-white"
-                        onClick={toggleShowMore}>
+                <button className="mt-2 flex items-center text-white" onClick={toggleShowMore}>
                     Show More
-                    <img src={showMoreIcon.src} alt="Show More Icon"
-                         className="w-4 h-4 mr-2"/>
+                    <img src={showMoreIcon.src} alt="Show More Icon" className="w-4 h-4 mr-2"/>
                 </button>
             )}
             <div className="flex justify-center mt-4">
@@ -121,7 +118,6 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                         height: '48px',
                         background: selectedGenres.length >= 3 ? 'var(--primary-color)' : 'var(--gray)',
                         opacity: selectedGenres.length < 3 ? '38%' : '100%'
-
                     }}
                 >
                     Next

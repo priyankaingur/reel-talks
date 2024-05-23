@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ProgressBar from './ProgressBar';
 import showMoreIcon from '../images/showmore.png';
-import searchIcon from '../images/search.png';
-import {gray} from "next/dist/lib/picocolors";
+import SearchBar from "./SearchBar";
+import SearchTitle from "./SearchTitle";
 
 interface Genre {
     name: string;
@@ -47,7 +47,6 @@ const genres: Genre[] = [
 
 const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> = ({ onNext }) => {
     const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
-    const [searchQuery, setSearchQuery] = useState<string>('');
     const [showMore, setShowMore] = useState<boolean>(false);
 
     const toggleGenre = (genre: string) => {
@@ -66,23 +65,8 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
         <div
             className="flex flex-col items-center justify-center h-screen bg-black text-white">
             <ProgressBar stages={5} currentStage={3}/>
-            <h2 className="tw-[896px] h-[38px] ext-2xl mb-4 text-center"
-                style={{color: 'var(--high-emphasis)', fontSize: '28px'}}>
-                Select your top 5 genres for movies and TV
-            </h2>
-            <div className="mb-4 relative">
-                <img src={searchIcon.src} alt="Search Icon"
-                     className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"/>
-                <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search"
-                    className="w-[544px] h-[56px] p-2 pl-10 rounded-md text-white bg-gray-800 focus:outline-none"
-                    style={{opacity: 'var(--1st-surface-opacity)'}}
-                />
-
-            </div>
+            <SearchTitle title="Select your top 5 genres for movies and TV"/>
+            <SearchBar/>
             <div className="grid grid-cols-5 gap-4">
                 {visibleGenres.map(({name, emoji}) => (
                     <button

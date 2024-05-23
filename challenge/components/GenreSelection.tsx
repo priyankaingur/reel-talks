@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ProgressBar from './ProgressBar';
-import showMoreIcon from '../images/showmoreIcon.png'; // Adjust the import
+import showMoreIcon from '../images/showmore.png';
+import searchIcon from '../images/search.png';
 
 interface Genre {
     name: string;
@@ -61,23 +62,26 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
     const visibleGenres = showMore ? genres : genres.slice(0, 20);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
-            <ProgressBar stages={5} currentStage={3} />
-            <h2 className="tw-[896px] h-[38px] ext-2xl font-bold mb-4 text-center"
-                style={{ color: 'var(--high-emphasis)', fontSize: '28px' }}>
+        <div
+            className="flex flex-col items-center justify-center h-screen bg-black text-white">
+            <ProgressBar stages={5} currentStage={3}/>
+            <h2 className="tw-[896px] h-[38px] ext-2xl mb-4 text-center"
+                style={{color: 'var(--high-emphasis)', fontSize: '28px'}}>
                 Select your top 5 genres for movies and TV
             </h2>
-            <div className="mb-4">
+            <div className="mb-4 relative">
+                <img src={searchIcon.src} alt="Search Icon"
+                     className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5"/>
                 <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="🔍 Search genres..."
-                    className="w-[544px] h-[56px] p-2 rounded-md bg-gray-800 text-white focus:outline-none"
+                    placeholder="Search"
+                    className="w-[544px] h-[56px] p-2 pl-10 rounded-md bg-gray-800 text-white focus:outline-none"
                 />
             </div>
             <div className="grid grid-cols-5 gap-4">
-                {visibleGenres.map(({ name, emoji }) => (
+                {visibleGenres.map(({name, emoji}) => (
                     <button
                         key={name}
                         className={`flex items-center justify-between p-2 border rounded-md w-[256px] h-[48px] hover:bg-gray-200 focus:outline-none`}
@@ -105,16 +109,18 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                 ))}
             </div>
             {!showMore && genres.length > 20 && (
-                <button className="mt-2 flex items-center text-white" onClick={toggleShowMore}>
-                    <img src={showMoreIcon.src} alt="Show More Icon" className="w-4 h-4 mr-2" />
+                <button className="mt-2 flex items-center text-white"
+                        onClick={toggleShowMore}>
                     Show More
+                    <img src={showMoreIcon.src} alt="Show More Icon"
+                         className="w-4 h-4 mr-2"/>
                 </button>
             )}
             <div className="flex justify-center mt-4">
                 <button
                     className="p-2 border border-white rounded text-white mr-4 bg-transparent hover:bg-gray-800"
                     onClick={() => console.log('Back button clicked')}
-                    style={{ width: '256px', height: '48px' }}
+                    style={{width: '256px', height: '48px'}}
                 >
                     Back
                 </button>

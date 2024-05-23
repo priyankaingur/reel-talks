@@ -38,11 +38,13 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
             prev.includes(genre) ? prev.filter(g => g !== genre) : [...prev, genre]
         );
     };
+    console.log(selectedGenres.includes("Comedy") ? 'var(--primary-color)' : 'bg-white');
+
 
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-black text-white">
             <ProgressBar stages={5} currentStage={3} /> {/* Add the progress bar */}
-            <h2 className="text-2xl font-bold mb-4 text-center">Select your top 5 genres for movies and TV</h2>
+            <h2 className="tw-[896px] h-[38px] ext-2xl font-bold mb-4 text-center" style={{color:'var(--high-emphasis)',fontSize: '28px'}}>Select your top 5 genres for movies and TV</h2>
             <div className="mb-4">
                 <input
                     type="text"
@@ -56,10 +58,12 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                 {genres.map(({ name, emoji }) => (
                     <button
                         key={name}
-                        className={`flex items-center justify-between p-2 border rounded-md w-[256px] h-[48px] ${selectedGenres.includes(name) ? 'bg-orange-500' : 'bg-white'} hover:bg-gray-200 focus:outline-none`}
+                        className={`flex items-center justify-between p-2 border rounded-md w-[256px] h-[48px]} hover:bg-gray-200 focus:outline-none`}
                         onClick={() => toggleGenre(name)}
-                        style={{ color: selectedGenres.includes(name) ? '#222222' : '#222222', fontFamily: 'Avenir Next', fontSize: '14px', fontWeight: '600' }}
+                        style={{backgroundColor: selectedGenres.includes(name) ? 'var(--primary-color)' : 'white',
+                            color: selectedGenres.includes(name) ? '#222222' : '#222222', fontSize: '14px', fontWeight: '600' }}
                     >
+
                         <div className="flex items-center">
                             <span className="text-2xl mr-2">{emoji}</span>
                             <span className="text-base">{name}</span>
@@ -68,7 +72,8 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                             type="checkbox"
                             checked={selectedGenres.includes(name)}
                             onChange={() => toggleGenre(name)}
-                            className="form-checkbox h-5 w-5 text-orange-500 rounded"
+                            className="form-checkbox h-4 w-4 rounded"
+                            // style={{ backgroundColor: 'var(--primary-color)'}}
                             aria-labelledby={`checkbox-${name}`}
                         />
                     </button>
@@ -83,10 +88,10 @@ const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => void }> =
                     Back
                 </button>
                 <button
-                    className={`p-2 rounded ${selectedGenres.length > 0 ? 'text-black bg-orange-500' : 'text-white bg-gray-600'}`}
+                    className={`p-2 rounded ${selectedGenres.length > 0 ? 'text-black' : 'text-white'}`}
                     onClick={() => onNext(selectedGenres)}
                     disabled={selectedGenres.length === 0}
-                    style={{ width: '256px', height: '48px' }}
+                    style={{ width: '256px', height: '48px' ,background: selectedGenres.length > 0?'var(--primary-color)':'var(--gray)'}}
                 >
                     Next
                 </button>

@@ -76,7 +76,7 @@ export const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => vo
             </div>
 
 
-            <div className="grid grid-cols-5 gap-10">
+            <div className="grid grid-cols-5 gap-10" style={{marginTop: showMore ? '240px' : '0px'}}>
                 {visibleGenres.map(({name, emoji}) => (
                     <div>
                         <button
@@ -108,7 +108,7 @@ export const GenreSelection: React.FC<{ onNext: (selectedGenres: string[]) => vo
                 ))}
             </div>
             {!showMore && genres.length > 20 && (
-                <button className="mt-2 flex items-center text-white"
+                <button className="mt-4 flex items-center text-white mb-4"
                         onClick={toggleShowMore}>
                     Show More
                     <img src={showMoreIcon.src} alt="Show More Icon"

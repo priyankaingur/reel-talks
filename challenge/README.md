@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Genre Selection
 
-## Getting Started
+The genre selection interface allows users to choose their favorite genres for movies and TV shows. It utilizes reusable components to create a user-friendly and efficient selection process.
 
-First, run the development server:
+## Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Interactive Buttons:** Users can click on genre buttons to select or deselect their favorites.
+**Expandable List:** Initially shows a limited set of genres with an option to "Show More" for additional choices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Data Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Genres:** Each genre is represented by an object with a name and an emoji.
+**State Management:** Uses React state to track which genres are selected and whether the full list is displayed.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Reusable Components
 
-## Learn More
+1. **ProgressBar**:
+   Visualizes user progress through different stages of the selection process.
 
-To learn more about Next.js, take a look at the following resources:
+2. **SearchTitle**:
+   Provides clear headings for different sections or pages.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **SearchBar**:
+   Allows users to input search criteria easily.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Movie Selection
 
-## Deploy on Vercel
+The movie selection interface helps users select their top movies. It also uses reusable components for consistency and efficiency.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Key Features
+**Movie Selection:** Users can choose up to 5 movies from a curated list.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Data Structure
+**Movies:** Predefined list of movies, each represented by an object containing a name and an image.
+**State Management:** Utilizes React state to keep track of selected movies and manage the progression of the selection process.
+
+#### Reusable Pieces
+
+1. **ProgressBar**:
+   Visualizes user progress through different stages of the selection process.
+
+2. **SearchTitle**:
+   Provides clear headings for different sections or pages.
+
+3. **SearchBar**:
+   Allows users to input search criteria easily.s
